@@ -1,0 +1,50 @@
+footer {
+  @apply mt-[200px] relative w-full bg-[#3586ff] min-h-[100px] p-12;
+
+  .social {
+    @apply flex justify-center items-center gap-4;
+
+    a {
+      @apply inline-block duration-500 hover:translate-y-[-10px]  py-4 px-4 rounded-[35px];
+    }
+  }
+
+  .wave {
+    @apply absolute w-full h-[100px] left-0 -top-[100px];
+    background: url('../../assets/image/wave.png');
+    background-size: 1000px 100px;
+  }
+  .wave#wave1 {
+    @apply z-[1000] opacity-100 bottom-0;
+    animation: animateWave 4s linear infinite;
+  }
+  .wave#wave2 {
+    @apply z-[999] opacity-50 bottom-[10px];
+    animation: animateWave_02 4s linear infinite;
+  }
+  .wave#wave3 {
+    @apply z-[1000] opacity-20 bottom-[15px];
+    animation: animateWave 3s linear infinite;
+  }
+  .wave#wave4 {
+    @apply z-[999] opacity-70 bottom-[10px];
+    animation: animateWave_02 3s linear infinite;
+  }
+}
+
+@keyframes animateWave {
+  0% {
+    background-position-x: 1000px;
+  }
+  100% {
+    background-position-x: 0;
+  }
+}
+@keyframes animateWave_02 {
+  0% {
+    background-position-x: 0px;
+  }
+  100% {
+    background-position-x: 1000px;
+  }
+}

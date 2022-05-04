@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @jsxImportSource @emotion/react */
+import React, { useEffect, useState } from 'react';
+import './App.scss';
+import axios from 'axios';
+import PokemonCollection from './components/PokemonCollection/PokemonCollection';
+import Footer from './components/Footer/Footer';
+// import tw from 'twin.macro';
 
-function App() {
+const App = () => {
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  useEffect(() => {
+    const getPokemon = async () => {
+      const res = await axios.get<ApiResponse<NamedAPIResource[]>>(
+        'https://pokeapi.co/api/v2/pokemon?limit=20'
+      );
+
+      const _pokemons = await Promise.all(
+        res.data?.results.map(async ({ url }: NamedAPIResource) => {
+          const poke = await axios.get<Pokemon>(url);
+          return poke.data;
+        })
+      );
+      setPokemons(_pokemons);
+    };
+
+    getPokemon();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <header className="pokemon-header">Pokemon</header>
+        <PokemonCollection pokemons={pokemons} />
+        <Footer />
+      </div>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply scroll-smooth leading-normal overflow-y-visible overflow-x-hidden text-lg bg-[#3d405b] font-monserrat;
+    text-rendering: optimizeSpeed;
+  }
+  a,
+  li {
+    @apply text-white text-heading;
+  }
+}
+
+.pokemon-header {
+  @apply font-semibold text-center text-heading tracking-[0.25rem] text-blue-light;
+}
+
+@layer components {
+  .container {
+    margin: 1rem 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container-overlay {
+    margin: 0rem;
+    background-color: black;
+    height: 100vh;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
