@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,10 +12,6 @@
   li {
     @apply text-white text-heading;
   }
-}
-
-.pokemon-header {
-  @apply font-semibold text-center text-heading tracking-[0.25rem] text-blue-light;
 }
 
 @layer components {
@@ -35,5 +30,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+.pokemon-header {
+  @apply font-semibold text-center text-heading tracking-[0.25rem] text-blue-light;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+$types: (
+  fairy: theme('colors.fairy'),
+  fire: theme('colors.fire'),
+  fighting: theme('colors.fighting'),
+  dragon: theme('colors.dragon'),
+  electric: theme('colors.electric'),
+  grass: theme('colors.grass'),
+  normal: theme('colors.normal'),
+  bug: theme('colors.bug'),
+  ice: theme('colors.ice'),
+  water: theme('colors.water'),
+  psychic: theme('colors.psychic'),
+  poison: theme('colors.poison'),
+  ghost: theme('colors.ghost'),
+  ground: theme('colors.ground'),
+  rock: theme('colors.rock'),
+  steel: theme('colors.steel'),
+  dark: theme('colors.dark'),
+);
+
+@each $type, $value in $types {
+  [data-color='#{$type}'] {
+    background-color: $value !important;
   }
 }
